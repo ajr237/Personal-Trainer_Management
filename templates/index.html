@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -10,6 +11,7 @@
     <div class="row">
        <div class="col-xs-12 text-center">
           <h2 class="text-thin">Single view content</h2>
+          <p><img src="{% static 'dog.jpg' %}"</img>hello</p>
           <p>This project is an application skeleton. You can use it to quickly bootstrap your jQuery webapp projects and dev environment for these projects.
              <br>The seed app doesn't do much and has most of the feature removed so you can add theme as per your needs just following the demo app examples.</p>
        </div>
