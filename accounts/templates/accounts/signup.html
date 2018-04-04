@@ -1,12 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'accounts/base.html' %}
 {% load static %}
 {% block main_content %}
-<div class="container">
-  <div class="row">
-
-  </div>
-
-</div>
 <div class="wrapper">
    <div class="block-center mt-xl wd-xl">
       <!-- START panel-->
@@ -20,21 +14,18 @@
             <p class="text-center pv">SIGNUP TO GET INSTANT ACCESS.</p>
             <form class="mb-lg" role="form" data-parsley-validate="" novalidate="">
                <div class="form-group has-feedback">
-
-
-
                   <label class="text-muted" for="signupInputEmail1">Email address</label>
-                  {{ form.username }}
+                  <p>{{ form.username }}</p>
                   <span class="fa fa-envelope form-control-feedback text-muted"></span>
                </div>
                <div class="form-group has-feedback">
                   <label class="text-muted" for="signupInputPassword1">Password</label>
-                  {{ form.password1 }}
+                  <p>{{ form.password1 }}</p>
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                </div>
                <div class="form-group has-feedback">
                   <label class="text-muted" for="signupInputRePassword1">Retype Password</label>
-                  {{ form.password2 }}
+                  <p>{{ form.password2 }}</p>
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                </div>
                <div class="clearfix">
@@ -47,7 +38,7 @@
                </div>
                <button class="btn btn-block btn-primary mt-lg" type="submit">Create account</button>
             </form>
-            <p class="pt-lg text-center">Have an account?</p><a class="btn btn-block btn-default" href="login.html">Signup</a>
+            <p class="pt-lg text-center">Have an account?</p><a class="btn btn-block btn-default" href="login.html">Login</a>
          </div>
       </div>
       <!-- END panel-->
@@ -61,6 +52,5 @@
       </div>
    </div>
 </div>
-
 
 {% endblock %}
