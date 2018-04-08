@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +126,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# email backend
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "ptmanagement5@gmail.com"
+EMAIL_HOST_PASSWORD = '1Turkey4'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# registration-redux configuration
+ACCOUNT_ACTIVATION_DAYS = 7
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
