@@ -33,6 +33,10 @@
        <link rel="stylesheet" href="{% static 'clients/app/css/bootstrap.css' %}" id="bscss">
        <!-- =============== APP STYLES ===============-->
        <link rel="stylesheet" href="{% static 'clients/app/css/app.css' %}" id="maincss">
+
+       {% block additional_css %}
+
+       {% endblock %}
     </head>
 
     <body>
@@ -119,19 +123,45 @@
                       <li class=" active">
                          <a href="singleview.html" title="Single View">
                             <em class="fa fa-file-o"></em>
-                            <span data-localize="sidebar.nav.SINGLEVIEW">Single View</span>
+                            <span data-localize="sidebar.nav.SINGLEVIEW">Dashboard</span>
                          </a>
                       </li>
                       <li class=" ">
-                         <a href="#menuid" title="Menu" data-toggle="collapse">
+                         <a href="#clients" title="Menu" data-toggle="collapse">
                             <em class="icon-folder"></em>
-                            <span data-localize="sidebar.nav.menu.MENU">Menu</span>
+                            <span data-localize="sidebar.nav.menu.MENU">Client Manager</span>
                          </a>
-                         <ul class="nav sidebar-subnav collapse" id="menuid">
-                            <li class="sidebar-subnav-header">Menu</li>
+                         <ul class="nav sidebar-subnav collapse" id="clients">
+                           <!-- <li class="sidebar-subnav-header">View Clients</li> -->
+                           <li class=" ">
+                              <a href="submenu.html" title="Sub Menu">
+                                 <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
+                              </a>
+                           </li>
+                            <!-- <li class="sidebar-subnav-header">Add Client</li> -->
                             <li class=" ">
                                <a href="submenu.html" title="Sub Menu">
-                                  <span data-localize="sidebar.nav.menu.SUBMENU">Sub Menu</span>
+                                  <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
+                               </a>
+                            </li>
+                         </ul>
+                      </li>
+                      <li class=" ">
+                         <a href="#PerformanceZone" title="Menu" data-toggle="collapse">
+                            <em class="icon-folder"></em>
+                            <span data-localize="sidebar.nav.menu.MENU">Performance Zone</span>
+                         </a>
+                         <ul class="nav sidebar-subnav collapse" id="PerformanceZone">
+                           <!-- <li class="sidebar-subnav-header">View Clients</li> -->
+                           <li class=" ">
+                              <a href="submenu.html" title="Sub Menu">
+                                 <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
+                              </a>
+                           </li>
+                            <!-- <li class="sidebar-subnav-header">Add Client</li> -->
+                            <li class=" ">
+                               <a href="submenu.html" title="Sub Menu">
+                                  <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
                                </a>
                             </li>
                          </ul>
@@ -231,6 +261,10 @@
        <!-- =============== PAGE VENDOR SCRIPTS ===============-->
        <!-- =============== APP SCRIPTS ===============-->
        <script src="{% static 'clients/app/js/app.js' %}"></script>
+
+       {% block additional_js %}
+
+       {% endblock %}
     </body>
 
     </html>
