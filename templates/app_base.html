@@ -81,11 +81,147 @@
                             <em class="icon-magnifier"></em>
                          </a>
                       </li>
-                      <li>
-                         <a href="#">
+                      <!-- START Alert menu-->
+                      <li class="dropdown dropdown-list">
+                         <a href="#" data-toggle="dropdown">
                             <em class="icon-user"></em>
+
+                         </a>
+                      <!-- START Dropdown menu-->
+
+                      <ul class="dropdown-menu animated flipInX">
+                         <li>
+                            <!-- START list group-->
+                            <div class="list-group">
+                               <!-- list item-->
+                               {% if user.is_authenticated %}
+                               <a class="list-group-item" href="{% url 'auth_logout' %}">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="icon-logout fa-2x text-danger"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">Logout</p>
+                                        <p class="m0 text-muted">
+                                           <!-- <small>You have 10 new emails</small> -->
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+
+                               <a class="list-group-item" href="#">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="fa fa-book fa-2x text-primary"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">My Profile</p>
+                                        <p class="m0 text-muted">
+                                           <!-- <small>You have 10 new emails</small> -->
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+                               {% else %}
+                               <a class="list-group-item" href="{% url 'auth_login' %}">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="icon-login fa-2x text-danger"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">Login</p>
+                                        <p class="m0 text-muted">
+                                           <!-- <small>You have 10 new emails</small> -->
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+                               {% endif %}
+
+                               <!-- last list item-->
+                               <a class="list-group-item" href="#">
+                                  <small>More notifications</small>
+                                  <span class="label label-danger pull-right">14</span>
+                               </a>
+                            </div>
+                            <!-- END list group-->
+                         </li>
+                      </ul>
+                      <!-- END Dropdown menu-->
+                   </li>
+                   <!-- END Alert menu-->
+                      <!-- Fullscreen (only desktops)-->
+                      <li class="visible-lg">
+                         <a href="#" data-toggle-fullscreen="">
+                            <em class="fa fa-expand"></em>
                          </a>
                       </li>
+                      <!-- START Alert menu-->
+                      <li class="dropdown dropdown-list">
+                         <a href="#" data-toggle="dropdown">
+                            <em class="icon-bell"></em>
+                            <div class="label label-danger">11</div>
+                         </a>
+                      <!-- START Dropdown menu-->
+
+                      <ul class="dropdown-menu animated flipInX">
+                         <li>
+                            <!-- START list group-->
+                            <div class="list-group">
+                               <!-- list item-->
+                               <a class="list-group-item" href="#">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="fa fa-twitter fa-2x text-info"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">New followers</p>
+                                        <p class="m0 text-muted">
+                                           <small>1 new follower</small>
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+                               <!-- list item-->
+                               <a class="list-group-item" href="#">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="fa fa-envelope fa-2x text-warning"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">New e-mails</p>
+                                        <p class="m0 text-muted">
+                                           <small>You have 10 new emails</small>
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+                               <!-- list item-->
+                               <a class="list-group-item" href="#">
+                                  <div class="media-box">
+                                     <div class="pull-left">
+                                        <em class="fa fa-tasks fa-2x text-success"></em>
+                                     </div>
+                                     <div class="media-box-body clearfix">
+                                        <p class="m0">Pending Tasks</p>
+                                        <p class="m0 text-muted">
+                                           <small>11 pending task</small>
+                                        </p>
+                                     </div>
+                                  </div>
+                               </a>
+                               <!-- last list item-->
+                               <a class="list-group-item" href="#">
+                                  <small>More notifications</small>
+                                  <span class="label label-danger pull-right">14</span>
+                               </a>
+                            </div>
+                            <!-- END list group-->
+                         </li>
+                      </ul>
+                      <!-- END Dropdown menu-->
+                   </li>
+                   <!-- END Alert menu-->
                       <!-- START Offsidebar button-->
                       <li>
                          <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
@@ -120,27 +256,29 @@
                       <li class="nav-heading ">
                          <span data-localize="sidebar.heading.HEADER">Menu Navigation</span>
                       </li>
-                      <li class=" active">
-                         <a href="singleview.html" title="Single View">
-                            <em class="fa fa-file-o"></em>
+                      <li class={% if request.resolver_match.url_name == "dashboard_url" %}"active"{% endif %}>
+                         <a href="{% url 'clients:dashboard_url' %}" title="Single View">
+                            <em class="fa fa-dashboard"></em>
                             <span data-localize="sidebar.nav.SINGLEVIEW">Dashboard</span>
                          </a>
                       </li>
-                      <li class=" ">
+                      <li class="">
                          <a href="#clients" title="Menu" data-toggle="collapse">
-                            <em class="icon-folder"></em>
+                            <em class="fa fa-users"></em>
                             <span data-localize="sidebar.nav.menu.MENU">Client Manager</span>
                          </a>
                          <ul class="nav sidebar-subnav collapse" id="clients">
                            <!-- <li class="sidebar-subnav-header">View Clients</li> -->
-                           <li class=" ">
-                              <a href="submenu.html" title="Sub Menu">
+                           <li class="{% if request.resolver_match.url_name == "client_list_url" %}active{% endif %}">
+                              <a href="{% url 'clients:client_list_url' %}" title="Sub Menu">
+                                 <em class="fa fa-user"></em>
                                  <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
                               </a>
                            </li>
                             <!-- <li class="sidebar-subnav-header">Add Client</li> -->
                             <li class=" ">
-                               <a href="submenu.html" title="Sub Menu">
+                               <a href="#" title="Sub Menu">
+                                  <em class="fa fa-plus"></em>
                                   <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
                                </a>
                             </li>
@@ -154,13 +292,13 @@
                          <ul class="nav sidebar-subnav collapse" id="PerformanceZone">
                            <!-- <li class="sidebar-subnav-header">View Clients</li> -->
                            <li class=" ">
-                              <a href="submenu.html" title="Sub Menu">
+                              <a href="#" title="Sub Menu">
                                  <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
                               </a>
                            </li>
                             <!-- <li class="sidebar-subnav-header">Add Client</li> -->
                             <li class=" ">
-                               <a href="submenu.html" title="Sub Menu">
+                               <a href="#" title="Sub Menu">
                                   <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
                                </a>
                             </li>
@@ -258,6 +396,8 @@
        <script src="{% static 'clients/vendor/animo.js/animo.js' %}"></script>
        <!-- LOCALIZE-->
        <script src="{% static 'clients/vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
+       <!-- SCREENFULL-->
+       <script src="{% static 'clients/vendor/screenfull/dist/screenfull.js' %}"></script>
        <!-- =============== PAGE VENDOR SCRIPTS ===============-->
        <!-- =============== APP SCRIPTS ===============-->
        <script src="{% static 'clients/app/js/app.js' %}"></script>

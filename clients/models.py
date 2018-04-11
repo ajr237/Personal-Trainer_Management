@@ -20,6 +20,10 @@ class Client(models.Model):
     date_of_birth = models.DateField()
 
     @property
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    @property
     def age(self):
         import datetime
         return int((datetime.date.today() - self.date_of_birth).days / 365.25  )

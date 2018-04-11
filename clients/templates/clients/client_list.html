@@ -12,6 +12,7 @@
     {% endblock %}
   </head>
   <body>
+
     {% block content %}
     <div class="row">
        <div class="col-lg-12">
@@ -31,6 +32,7 @@
                             <th class="sort-alpha">Email</th>
                          </tr>
                       </thead>
+                      {% if client_list|length > 0 %}
                       <tbody>
                         {% for client in client_list %}
                          <tr>
@@ -38,9 +40,15 @@
                             <td>{{ client.last_name }}</td>
                             <td>{{ client.age }}</td>
                             <td>{{ client.gender_description|title }}</td>
-                            <td>{{ client.email }}</td>
+                            {% if client.email %}
+                              <td>{{ client.email }}</td>
+                            {% else %}
+                              <td>No Email</td>
+                            {% endif %}
                          </tr>
+
                          {% endfor %}
+                         {% endif %}
                       </tbody>
                       <tfoot>
                          <tr>
