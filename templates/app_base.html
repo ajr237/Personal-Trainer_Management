@@ -122,6 +122,7 @@
                                      </div>
                                   </div>
                                </a>
+
                                {% else %}
                                <a class="list-group-item" href="{% url 'auth_login' %}">
                                   <div class="media-box">
@@ -271,14 +272,26 @@
                            <!-- <li class="sidebar-subnav-header">View Clients</li> -->
                            <li class="{% if request.resolver_match.url_name == "client_list_url" %}active{% endif %}">
                               <a href="{% url 'clients:client_list_url' %}" title="Sub Menu">
-                                 <em class="fa fa-user"></em>
+                                 <!-- <em class="fa fa-user"></em>
+                                 <em class="fa fa-user"></em> -->
                                  <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
+
                               </a>
                            </li>
+                           {% if request.resolver_match.url_name == "client_information_url" %}
+                           <li class="{% if request.resolver_match.url_name == "client_information_url" %}active{% endif %}">
+                              <a href="{% url 'clients:client_list_url' %}" title="Sub Menu">
+                                 <!-- <em class="fa fa-user"></em>
+                                 <em class="fa fa-user"></em> -->
+                                 <span data-localize="sidebar.nav.menu.SUBMENU">&nbsp;&nbsp;&nbsp;&nbsp;Client Info</span>
+
+                              </a>
+                           </li>
+                           {% endif %}
                             <!-- <li class="sidebar-subnav-header">Add Client</li> -->
-                            <li class=" ">
-                               <a href="#" title="Sub Menu">
-                                  <em class="fa fa-plus"></em>
+                            <li class="{% if request.resolver_match.url_name == "create_client_url" %}active{% endif %}">
+                               <a href="{% url 'clients:create_client_url' %}" title="Sub Menu">
+                                  <!-- <em class="fa fa-plus"></em> -->
                                   <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
                                </a>
                             </li>
