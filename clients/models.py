@@ -19,9 +19,9 @@ class Client(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     date_of_birth = models.DateField()
 
-    @property
-    def get_full_name(self):
-        return f"{self.first_name} {self.last_name}"
+    # @property
+    # def get_full_name(self):
+    #     return f"{self.first_name} {self.last_name}"
 
     @property
     def age(self):
