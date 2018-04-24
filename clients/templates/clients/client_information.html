@@ -2,6 +2,8 @@
 {% extends 'app_base.html' %}
 {% load static %}
 
+{% load humanize %}
+
     {% block additional_css %}
       <link rel="stylesheet" href="{% static 'clients/vendor/datatables-colvis/css/dataTables.colVis.css' %}">
       <link rel="stylesheet" href="{% static 'clients/vendor/datatables/media/css/dataTables.bootstrap.css' %}">
@@ -12,7 +14,7 @@
     <!-- Page content-->
     <div class="content-wrapper">
        <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-5">
              <div class="panel panel-default">
                 <div class="panel-body text-center">
                    <div class="pv-lg">
@@ -20,69 +22,67 @@
                    </div>
                    <h3 class="m0 text-bold">{{ client.first_name }} {{ client.last_name }}</h3>
                    <div class="mv-lg">
-                      <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation text. Have fun!</p>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p>Age: {{ client.age }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                          <p>Gender: {{ client.get_gender_display }}</p>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <p>{{ client.email }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                          <p>Tel: {{ client.contact_number }}</p>
+                        </div>
+                      </div>
                    </div>
-                   <div class="text-center"><a class="btn btn-primary" href="#">Send message</a>
+                   <div class="row">
+                     <div class="col-sm-6">
+                       <div class="text-center"><a class="btn btn-success btn-block fa fa-letter" href="mailto:{{ client.email }}">Email</a>
+                     </div>
+                   </div>
+                   <div class="col-sm-6">
+                     <div class="text-center"><a class="btn btn-warning btn-block fa fa-phone" href="tel:{{ client.contact_number }}"> Phone</a>
+                   </div>
+                   </div>
+
+
                    </div>
                 </div>
              </div>
              <div class="panel panel-default hidden-xs hidden-sm">
                 <div class="panel-heading">
-                   <div class="panel-title text-center">Recent contacts</div>
+                   <div class="panel-title text-center">Recently Added Clients</div>
                 </div>
                 <div class="panel-body">
+                  {% for client in k %}
+
                    <div class="media">
                       <div class="media-left media-middle">
-                         <a href="#">
+                         <a href="{% url 'clients:client_information_url' pk=client.pk %}">
                             <img class="media-object img-circle img-thumbnail thumb48" src="{% static 'clients/app/img/user/04.jpg' %}" alt="Contact">
                          </a>
                       </div>
                       <div class="media-body pt-sm">
-                         <div class="text-bold">Floyd Ortiz
-                            <div class="text-sm text-muted">12m ago</div>
+                        <a href="{% url 'clients:client_information_url' pk=client.pk %}">
+                         <div class="text-bold">{{ client.first_name }} {{ client.last_name }}
+                            <div class="text-sm text-muted">Added: {{ client.date_added|naturaltime }}</div>
                          </div>
+                       </a>
                       </div>
                    </div>
-                   <div class="media">
-                      <div class="media-left media-middle">
-                         <a href="#">
-                            <img class="media-object img-circle img-thumbnail thumb48" src="{% static 'clients/app/img/user/05.jpg' %}" alt="Contact">
-                         </a>
-                      </div>
-                      <div class="media-body pt-sm">
-                         <div class="text-bold">Luis Vasquez
-                            <div class="text-sm text-muted">2h ago</div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="media">
-                      <div class="media-left media-middle">
-                         <a href="#">
-                            <img class="media-object img-circle img-thumbnail thumb48" src="{% static 'clients/app/img/user/06.jpg' %}" alt="Contact">
-                         </a>
-                      </div>
-                      <div class="media-body pt-sm">
-                         <div class="text-bold">Duane Mckinney
-                            <div class="text-sm text-muted">yesterday</div>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="media">
-                      <div class="media-left media-middle">
-                         <a href="#">
-                            <img class="media-object img-circle img-thumbnail thumb48" src="{% static 'clients/app/img/user/07.jpg' %}" alt="Contact">
-                         </a>
-                      </div>
-                      <div class="media-body pt-sm">
-                         <div class="text-bold">Connie Lambert
-                            <div class="text-sm text-muted">2 weeks ago</div>
-                         </div>
-                      </div>
-                   </div>
+                {% endfor %}
+
+
+
                 </div>
              </div>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-7">
              <div class="panel panel-default">
                 <div class="panel-body">
                    <div class="pull-right">
@@ -92,11 +92,11 @@
                          </button>
                          <ul class="dropdown-menu dropdown-menu-right animated fadeInLeft" role="menu">
                             <li>
-                               <a href="#">
+                               <a href="mailto:{{ client.email }}">
                                   <span>Send message</span>
                                </a>
                             </li>
-                            <li>
+                            <li class="disabled">
                                <a href="#">
                                   <span>Share contact</span>
                                </a>
@@ -110,57 +110,55 @@
                          </ul>
                       </div>
                    </div>
-                   <div class="h4 text-center">Contact Information</div>
+                   <div class="h4 text-center">Client Information</div>
                    <div class="row pv-lg">
                       <div class="col-lg-2"></div>
                       <div class="col-lg-8">
                          <form class="form-horizontal" method="POST">
                            {% csrf_token %}
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact1">Name</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact1">First Name</label>
+                               <div class="col-sm-9">
                                  {{ form.first_name }}
                                   <!-- <input class="form-control" id="inputContact1" type="text" placeholder="" value="Audrey Hunt"> -->
                                </div>
                             </div>
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact1">Name</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact1">Last Name</label>
+                               <div class="col-sm-9">
                                  {{ form.last_name }}
                                   <!-- <input class="form-control" id="inputContact1" type="text" placeholder="" value="Audrey Hunt"> -->
                                </div>
                             </div>
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact2">Email</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact2">Email</label>
+                               <div class="col-sm-9">
                                   {{ form.email }}
                                </div>
                             </div>
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact3">Phone</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact3">Phone</label>
+                               <div class="col-sm-9">
                                   {{ form.contact_number }}
                                </div>
                             </div>
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact4">Gender</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact4">Gender</label>
+                               <div class="col-sm-9">
                                   {{ form.gender }}
                                </div>
                             </div>
                             <div class="form-group">
-                               <label class="col-sm-2 control-label" for="inputContact5">Date of Birth</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-3 control-label" for="inputContact5">Date of Birth</label>
+                               <div class="col-sm-9">
                                   <!-- {{ form.date_of_birth }} -->
-                                  {{ form.date_of_birth.0 }}
-                                  {{ form.date_of_birth.month_field }}
-                                  {{ form.date_of_birth_month_field }}
-                                  {{ form.date_of_birth.m }}
+                                  {{ form.date_of_birth }}
+
                                </div>
                             </div>
 
                             <div class="form-group">
-                               <div class="col-sm-offset-2 col-sm-10">
+                               <div class="col-sm-offset-3 col-sm-9">
                                   <button class="btn btn-info" type="submit">Update</button>
 
                                   <a href="{% url 'clients:client_delete_url' pk=client.pk %}" class="btn btn-danger active" role="button" aria-pressed="true">Delete</a>

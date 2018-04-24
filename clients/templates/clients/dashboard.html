@@ -8,14 +8,70 @@
   </head>
   <body>
     {% block content %}
+    <!-- START widgets box-->
     <div class="row">
-       <div class="col-xs-12 text-center">
-          <h2 class="text-thin">Dashboard</h2>
-          <p>Welcome back {{ user.username }}!</p>
-          <p>View your clients stats and contact information here.
-             <br>More content will be added soon. 2018 {{ user.username }}</p>
+       <div class="col-lg-3 col-sm-6">
+          <!-- START widget-->
+          <div class="panel widget bg-primary">
+             <div class="row row-table">
+                <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                   <em class="icon-user fa-3x"></em>
+                </div>
+                <div class="col-xs-8 pv-lg">
+                   <div class="h3 mt0">{{ clients|length }}</div>
+                   <div class="text-uppercase">Clients</div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-lg-3 col-sm-6">
+          <!-- START widget-->
+          <div class="panel widget bg-purple">
+             <div class="row row-table">
+                <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                   <em class="fa fa-calendar fa-3x"></em>
+                </div>
+                <div class="col-xs-8 pv-lg">
+                   <div class="h3 mt0">{{ sessions.0.date|date:'d/m/y' }}
+                      <small>{{ sessions.0.date|date:'H:m' }}</small>
+                   </div>
+                   <div class="text-uppercase">Next Session</div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-lg-3 col-md-6 col-sm-12">
+          <!-- START widget-->
+          <div class="panel widget bg-green">
+             <div class="row row-table">
+                <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                   <em class="fa fa-money fa-3x"></em>
+                </div>
+                <div class="col-xs-8 pv-lg">
+                   <div class="h3 mt0">£2,358
+
+                   </div>
+                   <div class="text-uppercase">Monthly Income</div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-lg-3 col-md-6 col-sm-12">
+          <!-- START widget-->
+          <div class="panel widget bg-danger">
+             <div class="row row-table">
+                <div class="col-xs-4 text-center bg-danger-dark pv-lg">
+                   <em class="icon-badge fa-3x"></em>
+                </div>
+                <div class="col-xs-8 pv-lg">
+                   <div class="h3 mt0">13</div>
+                   <div class="text-uppercase">Goals Achieved</div>
+                </div>
+             </div>
+          </div>
        </div>
     </div>
+    <!-- END widgets box-->
     {% endblock %}
   </body>
 </html>

@@ -198,6 +198,26 @@ hr {
   border-width: 0 1px 1px 1px;
   border-color: #dde6e9;
 }
+
+/* .nav-tabs li:nth-child(1) a {
+  background-color:#edf1f2;
+  border: 1px solid #dde6e9;
+}
+
+.nav-tabs li:nth-child(2) a {
+  background-color:#edf1f2;
+  border: 1px solid #dde6e9;
+}
+
+.nav-tabs li:nth-child(3) a {
+  background-color:#edf1f2;
+}
+
+.nav-tabs li:nth-child(4) a {
+  background-color:#edf1f2;
+} */
+
+
 .nav-pills + .tab-content {
   border: 0;
   padding: 0;
@@ -5013,7 +5033,7 @@ x:-o-prefocus,
  ========================================================================== */
 /**
  * Custom form elements
- *    - Checkbox 
+ *    - Checkbox
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -7710,7 +7730,7 @@ body .jvectormap-zoomout {
   max-width: 100%;
   min-width: 100%;
 }
-/** 
+/**
  * Displays hidden content on hover. Add this class to the parent element.
  * Markup
  *   <div class="hover-visible">

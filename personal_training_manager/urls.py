@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^$', views.dashboard, name='dashboard_url'),
     url(r'^clients/', include('clients.urls')),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^tests/', include('health_fitness_tests.urls')),
+    url(r'^calendar/', include('schedule.urls')),
+    # url(r'^calendar1/', include('planner.urls')),
 ]

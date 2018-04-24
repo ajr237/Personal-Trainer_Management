@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends 'app_base.html' %}
+{% load static %}
+
+{% block additional_css %}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Client Detail Page Container -->
+<div class="container">
+  <!-- Tabbed Info -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- START panel tab-->
+      <div class="panel panel-transparent" role="tabpanel">
+        <!-- Nav tabs-->
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+
+          <li class="active" role="presentation">
+            <a class="bb0" href="#Body_composition" aria-controls="Body_composition" role="tab" data-toggle="tab">
+            <em class="fa fa-child fa-fw"></em> Body Composition</a>
+          </li>
+          <li role="presentation">
+          <a class="bb0" href="#health" aria-controls="health" role="tab" data-toggle="tab">
+            <em class="fa fa-stethoscope fa-fw"></em> Health</a>
+          </li>
+          <li role="presentation">
+          <a class="bb0" href="#fitness" aria-controls="fitness" role="tab" data-toggle="tab">
+            <em class="fa fa-bicycle fa-fw"></em> Fitness</a>
+          </li>
+          <li role="presentation">
+            <a class="bb0" href="#nutrition" aria-controls="nutrition" role="tab" data-toggle="tab">
+            <em class="fa fa-cutlery fa-fw"></em> Nutrition</a>
+          </li>
+        </ul>
+        <!-- Tab panes-->
+        <div class="tab-content p2 bg-white">
+
+          <!-- Body Composition -->
+          <div class="tab-pane active" id="Body_composition" role="tabpanel">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="text-center">Body Composition</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Health -->
+          <div class="tab-pane" id="health" role="tabpanel">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="text-center">Health</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fitness -->
+          <div class="tab-pane" id="fitness" role="tabpanel">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="text-center">Fitness</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nutrition -->
+          <div class="tab-pane" id="nutrition" role="tabpanel">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="text-center">Nutrition</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END panel tab-->
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+
+{% endblock %}

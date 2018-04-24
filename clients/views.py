@@ -6,13 +6,19 @@ from django.utils import timezone
 from . models import Client
 from . forms import ClientForm
 
+from planner.models import Session
+
 @login_required
 def dashboard(request):
 
-    user = get_user_model()
+    user = request.user
+    clients = Client.objects.filter(user=user)
+    sessions = Session.objects.filter(client__user=user)
 
     context = {
         'user': user,
+        'clients': clients,
+        'sessions': sessions,
     }
 
     return render(request, 'clients/dashboard.html', context)
@@ -56,7 +62,15 @@ def client_information_view(request, pk):
             return redirect('clients:client_information_url', pk=pk)
     else:
         form = ClientForm(instance=client)
-    return render(request, 'clients/client_information.html', {'form': form, 'client': client})
+    clients = Client.objects.order_by('-date_added')
+    counter = 0
+    k = []
+    for i in clients:
+        if i != client and counter <3:
+            k.append(i)
+            counter += 1
+
+    return render(request, 'clients/client_information.html', {'form': form, 'client': client, 'k': k})
 
 def client_delete_view(request, pk):
     client = Client.objects.filter(pk=pk)

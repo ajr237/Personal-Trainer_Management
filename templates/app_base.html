@@ -304,14 +304,14 @@
                          </a>
                          <ul class="nav sidebar-subnav collapse" id="PerformanceZone">
                            <!-- <li class="sidebar-subnav-header">View Clients</li> -->
-                           <li class=" ">
-                              <a href="#" title="Sub Menu">
-                                 <span data-localize="sidebar.nav.menu.SUBMENU">View Clients</span>
+                           <li class="{% if request.resolver_match.url_name == "health_client_list_url" %}active{% endif %}">
+                              <a href="{% url 'health_fitness_tests:health_client_list_url' %}" title="Sub Menu">
+                                 <span data-localize="sidebar.nav.menu.SUBMENU">Select Client</span>
                               </a>
                            </li>
                             <!-- <li class="sidebar-subnav-header">Add Client</li> -->
                             <li class=" ">
-                               <a href="#" title="Sub Menu">
+                               <a href="#" title="Sub Sub Menu">
                                   <span data-localize="sidebar.nav.menu.SUBMENU">Add Client</span>
                                </a>
                             </li>
